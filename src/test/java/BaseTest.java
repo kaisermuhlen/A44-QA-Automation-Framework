@@ -36,9 +36,9 @@ public class BaseTest {
         driver.quit();
     }
 
-    public String generateRandomName(){
+    public String generateRandomPlayListName(){
         Faker faker = new Faker(new Locale("en-US"));
-        String newName = faker.name().firstName();
+        String newName = faker.address().cityName();;
         return newName;
     }
 
