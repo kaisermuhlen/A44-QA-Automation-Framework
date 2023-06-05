@@ -3,7 +3,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class Homework_16 extends BaseTest {
+public class RegistrationTest extends BaseTest {
     @Test
     public void registrationNavigation() {
         openUrl();

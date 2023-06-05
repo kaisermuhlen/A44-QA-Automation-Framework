@@ -16,6 +16,7 @@ public class BaseTest {
     static WebDriver driver;
 
 
+
     @BeforeSuite
     static void setupDriver() {
         WebDriverManager.chromedriver().setup();
@@ -64,5 +65,15 @@ public class BaseTest {
     public void openUrl() {
         String url = "https://bbb.testpro.io/";
         driver.get(url);
+    }
+
+    public void login(String email, String password){
+        enterEmail(email);
+        enterPassword(password);
+        clickLoginBtn();
+    }
+
+    public void waitUntilVisible(WebElement element){
+
     }
 }
