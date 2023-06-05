@@ -12,9 +12,10 @@ public class SongTests extends BaseTest {
     public void addSongToPlaylist() {
         String text = "Dark Days";
         openUrl();
+
         login("ekaterina.kurbatova@testpro.io", "te$t$tudent");
 
-        searchForSong (text);
+        searchForSong(text);
 
         clickViewAllBtn();
 
@@ -22,7 +23,7 @@ public class SongTests extends BaseTest {
 
         clickAddToPlayListBtn();
 
-        String playListName = generateRandomPlaylistName();
+        String playListName = generateRandomName();
 
         createNewPlayListWhileAddingSong(playListName);
 
