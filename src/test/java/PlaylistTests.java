@@ -1,6 +1,7 @@
 import net.bytebuddy.asm.Advice;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -14,11 +15,14 @@ public class PlaylistTests extends BaseTest {
         openUrl();
         login("ekaterina.kurbatova@testpro.io", "te$t$tudent");
 //create playlist
-        WebElement plusBtn = driver.findElement(By.cssSelector("[data-testid='sidebar-create-playlist-btn']"));
+        WebElement plusBtn = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.cssSelector("[data-testid='sidebar-create-playlist-btn']")));
         plusBtn.click();
-        WebElement newPlaylist = driver.findElement(By.cssSelector("[data-testid='playlist-context-menu-create-simple']"));
+        WebElement newPlaylist = wait.until(ExpectedConditions
+                .elementToBeClickable(By.cssSelector("[data-testid='playlist-context-menu-create-simple']")));
         newPlaylist.click();
-        WebElement inputPlaylistName = driver.findElement(By.cssSelector("input[name='name']"));
+        WebElement inputPlaylistName = wait.until(ExpectedConditions
+                .elementToBeClickable(By.cssSelector("input[name='name']")));
         inputPlaylistName.click();
         inputPlaylistName.clear();
         inputPlaylistName.sendKeys("katerry");
@@ -26,16 +30,19 @@ public class PlaylistTests extends BaseTest {
                 .keyDown(Keys.ENTER)
                 .perform();
 
-        Thread.sleep(3000);
-        WebElement playlistHeader = driver.findElement(By.cssSelector("#playlistWrapper h1"));
+        //Thread.sleep(3000);
+        WebElement playlistHeader = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.cssSelector("#playlistWrapper h1")));
         Assert.assertEquals(playlistHeader.getText(), "katerry");
 
         //Delete Playlist
-        WebElement deletePlayListBtn = driver.findElement(By.cssSelector(".btn-delete-playlist"));
+        WebElement deletePlayListBtn = wait.until(ExpectedConditions
+                .elementToBeClickable(By.cssSelector(".btn-delete-playlist")));
         deletePlayListBtn.click();
 
         //assertion
-        WebElement banner = driver.findElement(By.cssSelector(".success"));
+        WebElement banner = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.cssSelector(".success")));
         Assert.assertTrue(banner.isDisplayed());
 
        /* List<WebElement> playlists = driver.findElements(By.cssSelector("#playlists a"));
